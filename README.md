@@ -1,12 +1,39 @@
-# React + Vite
+# Subscription Management System - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend interface for managing users, plans, and subscriptions with real-time status tracking.
 
-Currently, two official plugins are available:
+![Dashboard Preview](screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ <!-- Add your screenshot later -->
 
-## Expanding the ESLint configuration
+## Features
+- 👥 **User Management**: Create, view, and delete users
+- 📋 **Plan Management**: Define subscription plans with duration/price
+- 🔄 **Subscription Flow**: Simulate payments and assign plans
+- ⏳ **Expiration Badges**: Visual indicators for subscription statuses
+- 📱 **Responsive Design**: Works on desktop and mobile
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Quick Start
+
+### Prerequisites
+- Node.js 18+
+- Backend server running ([see backend README](#))
+- Git
+
+### Installation
+```bash
+git clone https://github.com/your/repo.git
+cd subscription-frontend
+npm install
+
+npm start  
+
+src/
+├── components/  # Reusable UI components
+│   ├── users/
+│   ├── plans/
+│   └── subscriptions/
+├── hooks/       # Custom hooks
+├── pages/       # Main views
+├── services/    # API service layer
+└── utils/       # Helper functions
