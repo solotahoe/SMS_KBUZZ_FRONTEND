@@ -26,7 +26,7 @@ git clone https://github.com/your/repo.git
 cd subscription-frontend
 npm install
 
-npm start  
+npm run dev  
 
 src/
 ├── components/  # Reusable UI components
