@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useUsers } from "../hooks/useUsers";
 import formatDate from '../utils/formatDate';
 import { useUserProfile } from "../hooks/useUsers";
@@ -19,7 +20,7 @@ function DashboardPage() {
       {isActive ? (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
         <strong className="font-bold">Dear User!</strong>
-        <span className="block sm:inline ml-2">Your current susbscription is valid untill {formatDate(info?.data?.subscription?.endDate)}</span>
+        <span className="block sm:inline ml-2">Your current susbscription is active untill {formatDate(info?.data?.subscription?.endDate)}</span>
       </div>
       
       ) : (
