@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import ProfileCard from "../components/ProfileCard";
 import EditProfileModal from "../components/editProfileModal"; // Import Modal
+import { useUserProfile } from "../hooks/useUsers";
+import LoadingSpinner from "../LoadingSpinner";
+import formatDate from "../utils/formatDate";
 
 const initialUser = {
   name: "John Doe",
@@ -12,21 +15,27 @@ const initialUser = {
 };
 
 function ProfilePage() {
-  const [user, setUser] = useState(initialUser);
-  const [isEditing, setIsEditing] = useState(false);
+  const { data: useUserData, isLoading, isError, error } = useUserProfile();
 
+  const [user, setUser] = useState(useUserData);
+  const [isEditing, setIsEditing] = useState(false);
+  // console.log(useUserData);
   const handleEditProfile = () => {
     setIsEditing(true);
   };
 
   const handleSaveProfile = (updatedUser) => {
     setUser(updatedUser);
+
     setIsEditing(false);
   };
 
   const handleCloseModal = () => {
     setIsEditing(false);
   };
+
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <div>Error: {error.message}</div>;
 
   return (
     <div className="p-6">
@@ -35,12 +44,24 @@ function ProfilePage() {
       </h1>
 
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ProfileCard title="Name" value={user.name} />
-        <ProfileCard title="Email" value={user.email} />
-        <ProfileCard title="Subscribed Plan" value={user.plan} />
-        <ProfileCard title="Subscription Status" value={user.status} />
-        <ProfileCard title="Start Date" value={user.startDate} />
-        <ProfileCard title="End Date" value={user.endDate} />
+        <ProfileCard title="Name" value={useUserData?.data?.name} />
+        <ProfileCard title="Email" value={useUserData?.data?.email} />
+        <ProfileCard
+          title="Subscribed Plan"
+          value={useUserData?.data?.subscription?.planName}
+        />
+        <ProfileCard
+          title="Subscription Status"
+          value={useUserData?.data?.subscription?.status}
+        />
+        <ProfileCard
+          title="Start Date"
+          value={formatDate(useUserData?.data?.subscription?.startDate)}
+        />
+        <ProfileCard
+          title="End Date"
+          value={formatDate(useUserData?.data?.subscription?.endDate)}
+        />
       </div>
 
       <div className="mt-10 text-center">
@@ -51,15 +72,13 @@ function ProfilePage() {
           Edit Profile
         </button>
 
-        <p className="text-gray-500 text-sm mt-4">
-          Keep your profile updated to enjoy seamless service.
-        </p>
+        <p className="text-gray-500 text-sm mt-4">Keep your profile updated</p>
       </div>
 
       {/* Edit Modal */}
       {isEditing && (
         <EditProfileModal
-          user={user}
+          user={useUserData}
           onClose={handleCloseModal}
           onSave={handleSaveProfile}
         />

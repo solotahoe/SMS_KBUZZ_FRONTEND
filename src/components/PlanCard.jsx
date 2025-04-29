@@ -8,9 +8,9 @@ function PlanCard({ name, price, duration, onSubscribe }) {
       <div>
         <h2 className="text-xl font-semibold mb-4 text-gray-700">{name}</h2>
         <p className="text-gray-500 mb-2">
-          <span className="font-bold text-lg">${price}</span> / plan
+          <span className="font-bold text-lg">${price}</span> 
         </p>
-        <p className="text-gray-400 mb-6">{duration}</p>
+        <p className="text-gray-400 mb-6">{duration} Days</p> 
       </div>
 
       <button

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import LoadingSpinner from "../LoadingSpinner"; 
+import LoadingSpinner from "../LoadingSpinner";
 
 const LoginPage = lazy(() => import("../pages/LoginPage"));
 const SignUpPage = lazy(() => import("../pages/SignUpPage"));
@@ -26,16 +26,10 @@ export default function AppRouter() {
             <Route path="plans" element={<PlansPage />} />
             <Route path="profile" element={<ProfilePage />} />
           </Route>
-
-          
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />
-
-  
         </Routes>
       </Suspense>
-  </Router>
-  )
-  
- 
+    </Router>
+  );
 }

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useUsers } from "../hooks/useUsers";
+import { useUsers,useDeleteUsers } from "../hooks/useUsers";
 import LoadingSpinner from "../LoadingSpinner";
 
 function UsersPage() {
   const { data: usersData, isLoading, error } = useUsers();
+  const { mutateAsync } = useDeleteUsers();
   // console.log("users data", usersData.users);
   const handleDeleteClick = (user) => {
     if (confirm(`Are you sure you want to delete ${user.name}?`)) {
       // Perform delete logic here
-      console.log("Deleting user:", user);
+      const userId = user?._id;
+      console.log("Deleting user:", user._id);
+      mutateAsync(userId)
       // Example: Call API to delete, then refresh the list
     }
   };

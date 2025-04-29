@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {useLogin} from '../hooks/useUsers'
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const loginMutation = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,13 +17,13 @@ const LoginPage = () => {
 
     try {
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // For demo purposes, accept any non-empty credentials
-      if (username && password) {
-        navigate("/dashboard");
+       console.log({email, password})
+       const formData = {email, password}
+      if (email && password) {
+        loginMutation.mutate(formData);
+        // navigate("/home/dashboard");
       } else {
-        setError("Please enter both username and password");
+        setError("Please enter both email and password");
       }
     } catch (err) {
       setError("Login failed. Please try again.");
@@ -67,20 +69,20 @@ const LoginPage = () => {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
-                htmlFor="username"
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Username
+                Email
               </label>
               <div className="mt-1">
                 <input
-                  id="username"
-                  name="username"
+                  id="email"
+                  name="email"
                   type="text"
-                  autoComplete="username"
+                  autoComplete="email"
                   required
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>

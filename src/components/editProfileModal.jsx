@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useUPdateProfile } from "../hooks/useUsers";
+import formatDate from "../utils/formatDate";
 
 function EditProfileModal({ user, onClose, onSave }) {
-  const [formData, setFormData] = useState({ ...user });
+  const { mutateAsync, data } = useUPdateProfile();
 
+  const [formData, setFormData] = useState({ ...user?.data });
+  console.log(formData);
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -13,6 +17,12 @@ function EditProfileModal({ user, onClose, onSave }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave(formData);
+    const data = {
+      userId: formData._id,
+      name: formData.name,
+      email: formData.email,
+    };
+    mutateAsync(data);
   };
 
   return (

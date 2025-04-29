@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { useSignUp } from "../hooks/useUsers";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
+  const navigate = useNavigate();
+
+  const { mutateAsync, data } = useSignUp();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,7 +23,14 @@ function SignUpPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // TODO: send data to backend
+    mutateAsync(formData);
+    console.log(data);
+    if (data === "error") {
+      toast.error("Something went wrong.");
+    } else {
+      toast.success("Account created successfully!");
+      navigate("/");
+    }
   };
 
   return (
@@ -29,7 +42,10 @@ function SignUpPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
+            <label
+              htmlFor="name"
+              className="block mb-2 text-sm font-medium text-gray-700"
+            >
               Name
             </label>
             <input
@@ -44,7 +60,10 @@ function SignUpPage() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -59,7 +78,10 @@ function SignUpPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block mb-2 text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <input
