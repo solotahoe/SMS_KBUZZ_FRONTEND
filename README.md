@@ -17,7 +17,12 @@ Frontend interface for managing users, plans, and subscriptions with real-time s
 ### Prerequisites
 - Node.js 18+
 - Backend server running ([see backend README](#))
-- Git
+
+  ![Alt text](./images/img1.png)
+   ![Alt text](./images/img2.png)
+   ![Alt text](./images/img3.png)
+   ![Alt text](./images/img4.png)
+
 
 ### Installation
 ```bash
@@ -62,9 +67,6 @@ Use these default credentials to test the system:
     ## 🔐 How to delte a user to a 
 1. **Via Frontend**:  
    Navigate to `/home/users` or Users in the NavBar ,select a user and click on delete button.   
+ 
 
-
-   ![Alt text](./images/img1.png)
-   ![Alt text](./images/img2.png)
-   ![Alt text](./images/img3.png)
-   ![Alt text](./images/img4.png)
+ 
