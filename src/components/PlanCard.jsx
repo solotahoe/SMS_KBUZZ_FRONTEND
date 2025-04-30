@@ -7,7 +7,7 @@ import { useUserProfile } from "../hooks/useUsers";
 function PlanCard({ name, price, duration, onSubscribe }) {
 
   const { data: info } = useUserProfile();
-  console.log(info)
+  // console.log(info)
   const isActive = info?.data?.subscription.status === "active"; 
 
   return (

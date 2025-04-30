@@ -28,7 +28,7 @@ function PlansPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {plans?.plans?.map((plan) => (
           <PlanCard
-            key={plan.id}
+            key={plan._id}
             name={plan.name}
             price={plan.price}
             duration={plan.duration}
