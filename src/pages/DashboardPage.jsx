@@ -10,8 +10,9 @@ import { useUserProfile } from "../hooks/useUsers";
 function DashboardPage() {
     const { data: usersData, isLoading, error } = useUsers();
       const { data: info } = useUserProfile();
-      console.log(info)
-      const isActive = info?.data?.subscription.status === "active";    
+      console.log(info?.data?.subscription !== null)
+      const isActive = info?.data?.subscription !== null ?  (info?.data?.subscription.status === "active") : false;  
+      console.log(isActive)  
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
@@ -20,7 +21,7 @@ function DashboardPage() {
       {isActive ? (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
         <strong className="font-bold">Dear User!</strong>
-        <span className="block sm:inline ml-2">Your current susbscription is active untill {formatDate(info?.data?.subscription?.endDate)}</span>
+        <span className="block sm:inline ml-2">Your current susbscription is active untill {info?.data?.subscription !== null ? (formatDate(info?.data?.subscription?.endDate)) : "N/A"}</span>
       </div>
       
       ) : (

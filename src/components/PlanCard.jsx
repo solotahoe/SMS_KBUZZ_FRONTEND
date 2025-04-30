@@ -8,7 +8,7 @@ function PlanCard({ name, price, duration, onSubscribe }) {
 
   const { data: info } = useUserProfile();
   // console.log(info)
-  const isActive = info?.data?.subscription.status === "active"; 
+  const isActive = info?.data?.subscription !== null ?  (info?.data?.subscription.status === "active") : false;  
 
   return (
     <div className="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between hover:shadow-lg transition-shadow">
