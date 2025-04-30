@@ -66,8 +66,6 @@ export const useUserProfile = () => {
       toast.error("Error fetching Profile details");
       navigate("/");
 
-      // Optional: Add toast notification
-      // toast.error(error?.response?.data?.message || "Failed to load profile");
     },
   });
 };

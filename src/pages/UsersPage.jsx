@@ -5,14 +5,11 @@ import LoadingSpinner from "../LoadingSpinner";
 function UsersPage() {
   const { data: usersData, isLoading, error } = useUsers();
   const { mutateAsync } = useDeleteUsers();
-  // console.log("users data", usersData.users);
   const handleDeleteClick = (user) => {
     if (confirm(`Are you sure you want to delete ${user.name}?`)) {
-      // Perform delete logic here
       const userId = user?._id;
       console.log("Deleting user:", user._id);
       mutateAsync(userId)
-      // Example: Call API to delete, then refresh the list
     }
   };
   if (isLoading) return <LoadingSpinner />;

@@ -1,4 +1,3 @@
-// src/components/PlanCard.jsx
 
 import React from "react";
 import { useUserProfile } from "../hooks/useUsers";

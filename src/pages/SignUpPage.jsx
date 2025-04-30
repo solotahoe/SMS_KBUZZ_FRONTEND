@@ -22,7 +22,7 @@ function SignUpPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     mutateAsync(formData);
     console.log(data);
     if (data === "error") {
