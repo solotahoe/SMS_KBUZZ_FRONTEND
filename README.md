@@ -2,7 +2,7 @@
 
 Frontend interface for managing users, plans, and subscriptions with real-time status tracking.
 
-![Alt text](assets/ss.png)
+![Alt text](./images/ss.png)
 
 
 ## Features
